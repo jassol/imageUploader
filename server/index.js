@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express();
+const router = express.Router();
 
 // API calls
 // These routes are already mounted on "/api"
@@ -14,3 +14,5 @@ router.post('/world', (req, res) => {
     `I received your POST request. This is what you sent me: ${req.body.post}`,
   );
 });
+
+module.exports = router;
