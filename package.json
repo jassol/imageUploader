@@ -20,7 +20,8 @@
     "eject": "react-scripts eject",
     "start-dev-server": "node ./server/server.js",
     "start-dev": "yarn start-dev-server & yarn start-react",
-    "start": "node ./server/server.js"
+    "deploy": "yarn install --production & yarn build",
+    "start": "node ./server/server.js & yarn deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
