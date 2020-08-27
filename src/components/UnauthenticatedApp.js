@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import '../App.css';
 import NavBar from './NavBar';
+import AllImages from './AllImages'
 
 function UnauthenticatedApp() {
 
@@ -12,6 +13,7 @@ function UnauthenticatedApp() {
   return (
     <div className="App">
       <NavBar />
+      <AllImages />
       <header className="App-header">
         <p>
           Unauthenticated App

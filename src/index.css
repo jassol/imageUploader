@@ -15,12 +15,19 @@ code {
 #navBar {
   background-color: gainsboro;
   display: flex;
+  justify-content: space-between;
 }
 
 #navBar div {
   display: flex;
 }
 
+#navBar div h5 {
+  padding: 25px;
+  margin: 0;
+}
+
+/* --------------------- LOADING SPINNER ---------------------  */
 #spinner {
   display: inline-block;
   width: 50px;

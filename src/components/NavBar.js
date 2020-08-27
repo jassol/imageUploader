@@ -8,8 +8,8 @@ const NavBar = () => {
       </div>
       <div id='navLinks'>
       <h5>Browse Images</h5>
-      <h5>blah</h5>
-      <h5>hahah</h5>
+      <h5>My Images</h5>
+      <h5>Log In</h5>
       </div>
     </div>
   )

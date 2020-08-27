@@ -1,14 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const api = require('./server/index.js');
-
 const app = express();
 const port = process.env.PORT || 5000;
+const api = require('./server/api.js');
+const auth = require('./server/auth.js')
 
+// Body parsing middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Production environment static file routing
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'build')));
@@ -19,21 +21,16 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// Local Authorization Route
-app.get("/auth", async (req, res, next) => {
-  try {
-    const loggedInState = true;
-    res.send(loggedInState);
-  } catch (error) {
-    console.error(error);
-    next(error);
-  }
-})
-
 // All API routes mounted on '/api'
-app.use("/api", api)
+app.use("/api", api);
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+// All auth routes mounted on '/auth'
+app.use('/auth', auth);
+
+// 404 handling middleware
+app.use('*', (req, res) => {
+  res.status(404).send('Oops. The page you are looking for cannot be found')
+})
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -42,3 +39,5 @@ app.use((err, req, res, next) => {
   console.error(err.stack)
   res.status(err.status || 500).send(err.message || 'Internal server error.')
 })
+
+app.listen(port, () => console.log(`Listening on port ${port}`));
