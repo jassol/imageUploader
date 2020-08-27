@@ -24,6 +24,10 @@ function UnauthenticatedApp() {
         >
           react
         </a>
+        <p>For testing purposes, try out this login info</p>
+        <p>Username: test@test.com</p>
+        <p>Password: 123</p>
+
       </header>
     </div>
   );

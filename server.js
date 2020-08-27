@@ -20,7 +20,15 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Local Authorization Route
-app.get
+app.get("/auth", async (req, res, next) => {
+  try {
+    const loggedInState = true;
+    res.send(loggedInState);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+})
 
 // All API routes mounted on '/api'
 app.use("/api", api)
