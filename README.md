@@ -39,7 +39,9 @@ You need to add environmental variables in order for the database driver pg to c
 ```
 process.env.USER='postgres';
 process.env.PGUSER='postgres';
+process.env.PGPASSWORD=YOURSECRETPASSWORDHERE
 process.env.PGHOST='localhost';
 process.env.PGDATABASE='imageuploader';
 process.env.PGPORT=5432;
 ```
+Note, the PGPASSWORD variable can be omitted if you do not have a password for your database.

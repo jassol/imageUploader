@@ -15,19 +15,17 @@ router.get('/', async (req, res, next) => {
 
 router.get('/images', async (req, res, next) => {
   try {
-    const { rows } = await db.query('SELECT * FROM images');
-    console.log('/images route: ', rows);
+    const { rows } = await db.query('SELECT * FROM images WHERE public = true');
     res.send(rows);
   } catch (error) {
     next(error)
   }
 });
 
-router.post('/images/:userId', async (req, res, next) => {
+router.get('/images/:userId', async (req, res, next) => {
   try {
     const { userId } = req.params
     const { rows } = await db.query('SELECT * FROM images WHERE user_id = $1', [userId]);
-    console.log('/images/:userId route: ', rows);
     res.send(rows)
   } catch (error) {
     next(error)

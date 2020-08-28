@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+/* -------------------- NAV BAR & APP BODY --------------------  */
+.app-body {
+  padding: 40px;
+}
+
 #navBar {
   background-color: gainsboro;
   display: flex;
@@ -45,3 +50,22 @@ code {
 @-webkit-keyframes spin {
   to { -webkit-transform: rotate(360deg); }
 }
+
+/* -------------------------- IMAGES -------------------------  */
+
+.image-flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.single-image-container {
+  padding: 20px;
+}
+
+.single-image {
+  object-fit: cover;
+  width:300px;
+  height:300px;
+}
+

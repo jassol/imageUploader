@@ -1,36 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../App.css';
 import NavBar from './NavBar';
 import AllImages from './AllImages'
 
 function UnauthenticatedApp() {
-
-  // react hook that runs after every render
-  useEffect(() => {
-    document.title = `...........?`;
-  });
-
   return (
-    <div className="App">
+    <div>
       <NavBar />
-      <AllImages />
-      <header className="App-header">
-        <p>
-          Unauthenticated App
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          react
-        </a>
+      <div className='app-body'>
         <p>For testing purposes, try out this login info</p>
         <p>Username: test@test.com</p>
         <p>Password: 123</p>
-
-      </header>
+        <AllImages />
+      </div>
     </div>
   );
 }
