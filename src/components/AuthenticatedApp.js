@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../App.css';
 import NavBar from './NavBar';
 import AllImages from './AllImages';
+import { Switch, Route } from "react-router-dom";
 
 function AuthenticatedApp(props) {
   const { user } = props;
@@ -9,9 +10,14 @@ function AuthenticatedApp(props) {
   return (
     <div>
       <NavBar user={user} />
-      <div className='app-body'>
-        <AllImages />
-      </div>
+      <Switch>
+        <Route path="/images/:userId">
+          {/* <UserImages /> */}
+        </Route>
+        <Route path="/">
+          <AllImages />
+        </Route>
+      </Switch>
     </div>
   );
 }

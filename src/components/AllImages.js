@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SingleImage from './SingleImage';
 import Spinner from './Spinner';
+import PageHeader from './PageHeader'
 
 const loadOnScroll = () => {};
 const loadOnResize = () => {};
@@ -36,19 +37,19 @@ const AllImages = () => {
 
   if (loading) return (
     <div>
-      <h3>All Images</h3>
+      <PageHeader title='All Images' />
       <Spinner />
     </div>
   )
   else if (!images.data.length) return (
     <div>
-      <h3>All Images</h3>
+      <PageHeader title='All Images' />
       <h3>No Images Yet. Try uploading.</h3>
     </div>
   )
   else return (
     <div>
-      <h3>All Images</h3>
+      <PageHeader title='All Images' />
       <div className='image-flex'>
         {images.data.map(imageData => {
           return <SingleImage key={imageData.id} {...imageData}/>

@@ -12,8 +12,8 @@ code {
     monospace;
 }
 
-/* -------------------- NAV BAR & APP BODY --------------------  */
-.app-body {
+/* ------------------- NAV BAR & PAGE TITLES -------------------  */
+.page-title {
   padding: 40px;
 }
 
