@@ -25,7 +25,7 @@ const AllImages = () => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // react hook that runs after every render
+  // React hook that runs after every render
   useEffect(() => {
     const fetchData = async () => {
       const allImages = await axios.get('/api/images');
