@@ -7,9 +7,9 @@ import AuthenticatedApp from './components/AuthenticatedApp';
 import UnauthenticatedApp from './components/UnauthenticatedApp';
 
 function App() {
-  const loggedIn = () => false;
+  const loggedIn = () => true;
   const loggedInState = loggedIn();
-  return loggedInState ? <AuthenticatedApp /> : <UnauthenticatedApp />;
+  return loggedInState ? <AuthenticatedApp user='1' /> : <UnauthenticatedApp />;
 }
 
 export default App;

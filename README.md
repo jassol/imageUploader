@@ -12,6 +12,11 @@
 - PostgreSQL
 - AWS
 
+## Trying the App
+Use the following dummy account to test our the site features! <br />
+Username: test@test.com <br />
+Password: 123
+
 ## Local Development
 
 ### Repo Set Up

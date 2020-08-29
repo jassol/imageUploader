@@ -3,25 +3,54 @@ import axios from 'axios';
 import SingleImage from './SingleImage';
 import Spinner from './Spinner';
 
+const loadOnScroll = () => {};
+const loadOnResize = () => {};
+
 const AllImages = () => {
 
-  const [data, setData] = useState({ allImages: [] });
+  // Set up listeners for scroll & resize events for lazy loading
+  useEffect(() => {
+    window.addEventListener('scroll', loadOnScroll);
+    window.addEventListener('resize', loadOnResize);
+    console.log('added event listeners')
+    return function cleanupListeners() {
+      window.removeEventListener('scroll', loadOnScroll);
+      window.removeEventListener('resize', loadOnResize);
+      console.log('REMOVED event listeners')
+    }
+  });
+
+  // Load the image data
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // react hook that runs after every render
   useEffect(() => {
     const fetchData = async () => {
-      const allImageData = await axios.get('/api/images');
-      setData(allImageData)
+      const allImages = await axios.get('/api/images');
+      setImages(allImages);
+      setLoading(false);
     }
     fetchData();
   }, []);
 
-  if (!data.data) return <Spinner />;
+  if (loading) return (
+    <div>
+      <h3>All Images</h3>
+      <Spinner />
+    </div>
+  )
+  else if (!images.data.length) return (
+    <div>
+      <h3>All Images</h3>
+      <h3>No Images Yet. Try uploading.</h3>
+    </div>
+  )
   else return (
     <div>
       <h3>All Images</h3>
       <div className='image-flex'>
-        {data.data.map(imageData => {
+        {images.data.map(imageData => {
           return <SingleImage key={imageData.id} {...imageData}/>
         })}
       </div>

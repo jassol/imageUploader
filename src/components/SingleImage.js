@@ -1,7 +1,6 @@
 import React from 'react';
 
 const SingleImage = (props) => {
-  console.log(props)
   const { imageurl } = props;
   return (
     <div className='single-image-container'>

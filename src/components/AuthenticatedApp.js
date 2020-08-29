@@ -1,30 +1,17 @@
 import React, { useEffect } from 'react';
 import '../App.css';
 import NavBar from './NavBar';
+import AllImages from './AllImages';
 
-function AuthenticatedApp() {
-
-  // react hook that runs after every render
-  useEffect(() => {
-    document.title = `...........?`;
-  });
+function AuthenticatedApp(props) {
+  const { user } = props;
 
   return (
-    <div className="App">
-      <NavBar />
-      <header className="App-header">
-        <p>
-          Authenticated App
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          react
-        </a>
-      </header>
+    <div>
+      <NavBar user={user} />
+      <div className='app-body'>
+        <AllImages />
+      </div>
     </div>
   );
 }

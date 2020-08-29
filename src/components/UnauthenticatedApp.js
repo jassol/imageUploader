@@ -6,11 +6,8 @@ import AllImages from './AllImages'
 function UnauthenticatedApp() {
   return (
     <div>
-      <NavBar />
+      <NavBar user='guest' />
       <div className='app-body'>
-        <p>For testing purposes, try out this login info</p>
-        <p>Username: test@test.com</p>
-        <p>Password: 123</p>
         <AllImages />
       </div>
     </div>
