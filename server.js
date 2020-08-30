@@ -10,22 +10,33 @@ const auth = require('./server/auth.js')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// All API routes mounted on '/api'
+app.use("/api", api);
+
+// All auth routes mounted on '/auth'
+app.use('/auth', auth);
+
 // Production environment static file routing
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'build')));
+
+  // Block any requests for a file with an extension
+  app.use((req, res, next) => {
+    if (path.extname(req.path).length) {
+      const err = new Error('Not found')
+      err.status = 404
+      next(err)
+    } else {
+      next()
+    }
+  })
 
   // Handle React routing, return all requests to React app
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
   });
 }
-
-// All API routes mounted on '/api'
-app.use("/api", api);
-
-// All auth routes mounted on '/auth'
-app.use('/auth', auth);
 
 // 404 handling middleware
 app.use('*', (req, res) => {
