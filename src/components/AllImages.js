@@ -45,7 +45,11 @@ const AllImages = () => {
       <h3>No Images Yet. Try uploading.</h3>
     </div>
   )
-  else return (
+  else {
+    console.log('images: ',images)
+    console.log('images.imageData: ',images.imageData)
+    console.log(typeof(images.imageData))
+    return (
     <div>
       <PageHeader title='All Images' />
       <div className='image-flex'>
@@ -55,6 +59,7 @@ const AllImages = () => {
       </div>
     </div>
   )
+}
 }
 
 export default AllImages;
