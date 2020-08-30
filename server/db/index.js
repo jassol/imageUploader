@@ -1,3 +1,4 @@
+/*
 //Create pool for client connection
 const { Pool } = require('pg');
 
@@ -28,17 +29,30 @@ else {
 module.exports = {
   query: (text, params) => pool.query(text, params)
 }
+*/
 
 
-/*
 //Create pool for client connection
 const { Client } = require('pg');
+let client;
 
 // the line below imports environmental variables from the secrets file
 // but only when we are in development mode
-if (process.env.NODE_ENV !== 'production') require('../../secrets')
+if (process.env.NODE_ENV !== 'production') {
+  require('../../secrets');
+  client = new Client();
+}
 
-const client = new Client();
+// Production mode (when deployed on Heroku)
+else {
+  client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+}
+
 client.connect();
 
 // pool.on('error', (err, client) => {
@@ -56,4 +70,4 @@ module.exports = {
     }
   }
 };
-*/
+
