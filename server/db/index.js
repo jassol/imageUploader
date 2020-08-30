@@ -1,11 +1,24 @@
 //Create pool for client connection
 const { Pool } = require('pg');
 
+let pool;
+
 // the line below imports environmental variables from the secrets file
 // but only when we are in development mode
-if (process.env.NODE_ENV !== 'production') require('../../secrets')
+if (process.env.NODE_ENV !== 'production') {
+  require('../../secrets')
+  pool = new Pool();
+}
+// Production mode (when deployed on Heroku)
+else {
+  pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+}
 
-const pool = new Pool();
 
 // pool.on('error', (err, client) => {
 //   console.error('Unexpected error on idle client', err)
