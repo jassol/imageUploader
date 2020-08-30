@@ -22,26 +22,24 @@ const AllImages = () => {
   });
 
   // Load the image data
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [images, setImages] = useState({imageData: [], loading: true});
 
   // React hook that runs after every render
   useEffect(() => {
     const fetchData = async () => {
-      const allImages = await axios.get('/api/images');
-      setImages(allImages);
-      setLoading(false);
+      const { data } = await axios.get('/api/images');
+      setImages({ imageData: data, loading: false });
     }
     fetchData();
   }, []);
 
-  if (loading) return (
+  if (images.loading) return (
     <div>
       <PageHeader title='All Images' />
       <Spinner />
     </div>
   )
-  else if (!images.data.length) return (
+  else if (!images.imageData.length) return (
     <div>
       <PageHeader title='All Images' />
       <h3>No Images Yet. Try uploading.</h3>
@@ -51,7 +49,7 @@ const AllImages = () => {
     <div>
       <PageHeader title='All Images' />
       <div className='image-flex'>
-        {images.data.map(imageData => {
+        {images.imageData.map(imageData => {
           return <SingleImage key={imageData.id} {...imageData}/>
         })}
       </div>
