@@ -7,11 +7,12 @@ import AuthenticatedApp from './components/AuthenticatedApp';
 import UnauthenticatedApp from './components/UnauthenticatedApp';
 
 function App() {
-  const loggedIn = () => true;
-  const loggedInState = loggedIn();
+  const loggedIn = () => {};
+  const user = loggedIn();
+  const loggedInState = !!user;
   if (loggedInState) return (
     <div>
-      <AuthenticatedApp user='1' />
+      <AuthenticatedApp user={user} />
     </div>
   )
   else return (

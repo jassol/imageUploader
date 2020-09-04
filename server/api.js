@@ -16,7 +16,6 @@ router.get('/', async (req, res, next) => {
 router.get('/images', async (req, res, next) => {
   try {
     const { rows } = await db.query('SELECT * FROM images WHERE public = true');
-    console.log('rows: ', rows)
     res.send(rows);
   } catch (error) {
     next(error)

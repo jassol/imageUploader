@@ -7,7 +7,7 @@ import PageHeader from './PageHeader'
 const loadOnScroll = () => {};
 const loadOnResize = () => {};
 
-const AllImages = () => {
+const AllImages = (props) => {
 
   // Set up listeners for scroll & resize events for lazy loading
   useEffect(() => {
@@ -27,7 +27,9 @@ const AllImages = () => {
   // React hook that runs after every render
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get('/api/images');
+      const userId = props.user ? '/' + props.user.id : '';
+      const queryString = '/api/images' + userId;
+      const { data } = await axios.get(queryString);
       setImages({ imageData: data, loading: false });
     }
     fetchData();
@@ -46,20 +48,19 @@ const AllImages = () => {
     </div>
   )
   else {
-    console.log('images: ',images)
-    console.log('images.imageData: ',images.imageData)
-    console.log(typeof(images.imageData))
     return (
     <div>
       <PageHeader title='All Images' />
-      <div className='image-flex'>
-        {images.imageData.map(imageData => {
-          return <SingleImage key={imageData.id} {...imageData}/>
-        })}
+      <div className='image-flex-container'>
+        <div className='image-flex'>
+          {images.imageData.map(imageData => {
+            return <SingleImage key={imageData.id} {...imageData}/>
+          })}
+        </div>
       </div>
     </div>
-  )
-}
+    )
+  }
 }
 
 export default AllImages;
