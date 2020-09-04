@@ -5,11 +5,11 @@ import AllImages from './AllImages';
 import { Switch, Route } from "react-router-dom";
 
 function AuthenticatedApp(props) {
-  const { user } = props;
+  const { user, logOut } = props;
 
   return (
     <div>
-      <NavBar user={user} />
+      <NavBar user={user} logOut={logOut} />
       <Switch>
         <Route path="/images/:userId">
           <AllImages user={user} />

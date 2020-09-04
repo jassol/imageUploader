@@ -5,16 +5,17 @@ import AllImages from './AllImages'
 import Login from './Login'
 import { Switch, Route } from "react-router-dom";
 
-function UnauthenticatedApp() {
+function UnauthenticatedApp(props) {
+  const { logIn } = props;
   return (
     <div>
       <NavBar />
       <Switch>
         <Route path="/login">
-          <Login />
+          <Login logIn={logIn} />
         </Route>
         <Route path="/signup">
-          {/* <Signup /> */}
+          {/* <Signup logIn={logIn} /> */}
         </Route>
         <Route path="/">
           <AllImages />

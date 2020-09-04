@@ -19,9 +19,13 @@ router.put("/login", async (req, res, next) => {
   try {
     const { email, pswd } = req.body;
     const { rows } = await db.query('SELECT * FROM users WHERE email = $1 AND pswd = $2', [email, pswd]);
-    if (rows) res.send(rows[0]);
+    if (rows.length) {
+      const { id, email } = rows[0];
+      res.send({ id:id, email:email });
+    }
     else {
-      const err = new Error('Incorrect Login Credentials')
+      const err = new Error();
+      err.message = 'Incorrect Login Credentials';
       res.status(401).send(err)
     }
   } catch (error) {

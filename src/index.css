@@ -13,8 +13,13 @@ code {
 }
 
 /* ------------------- NAV BAR & PAGE TITLES -------------------  */
+.page-title-container {
+  max-width: 1020px;
+  margin: auto;
+}
+
 .page-title {
-  padding: 40px;
+  padding: 40px 20px;
 }
 
 #navBar {
@@ -27,9 +32,16 @@ code {
   display: flex;
 }
 
-#navBar div h5 {
+#navBar div h5, #navBar div a, #logout {
   padding: 25px;
   margin: 0;
+  text-decoration: none;
+  color: black;
+  font-size: medium;
+  font-weight: normal;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
 }
 
 /* --------------------- LOADING SPINNER ---------------------  */
@@ -62,7 +74,7 @@ image-flex-container {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 1200px;
+  max-width: 1020px;
   margin: auto;
 }
 
@@ -77,10 +89,6 @@ image-flex-container {
 }
 
 /* ------------------------ LOGIN / SIGNUP -----------------------  */
-
-.form-container {
-  margin-top: 20vh;
-}
 
 form {
   max-width: 400px;
@@ -101,4 +109,9 @@ form input {
 
 input[type="submit" i] {
   width: 400px;
+}
+
+.error {
+  color: red;
+  font-size: medium;
 }

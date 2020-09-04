@@ -1,16 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NavBar = (props) => {
   return props.user ?
   (
     <div id='navBar'>
       <div id='navLeft'>
-        <h5>Welcome, {props.user.id}</h5>
+        <h5>Welcome, {props.user.email}</h5>
       </div>
       <div id='navLinks'>
-        <h5>My Images</h5>
-        <h5>Browse Images</h5>
-        <h5>Log Out</h5>
+        <Link to={`/images/${props.user.id}`}>My Images</Link>
+        <Link to='/images'>Browse Images</Link>
+        <button id="logout" onClick={props.logOut}>Log Out</button>
       </div>
     </div>
   )
@@ -21,8 +22,9 @@ const NavBar = (props) => {
         <h5>Welcome</h5>
       </div>
       <div id='navLinks'>
-      <h5>Browse Images</h5>
-      <h5>Sign Up</h5>
+        <Link to='/images'>Browse Images</Link>
+        <Link to='/login'>Log In</Link>
+        <Link to='/signup'>Sign Up</Link>
       </div>
     </div>
   )
