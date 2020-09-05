@@ -3,23 +3,26 @@ import axios from 'axios';
 import SingleImage from './SingleImage';
 import Spinner from './Spinner';
 import PageHeader from './PageHeader'
+import { useParams } from 'react-router-dom';
 
-const loadOnScroll = () => {};
-const loadOnResize = () => {};
+// const loadOnScroll = () => {};
+// const loadOnResize = () => {};
 
 const AllImages = (props) => {
 
+  const { userId } = useParams();
+
   // Set up listeners for scroll & resize events for lazy loading
-  useEffect(() => {
-    window.addEventListener('scroll', loadOnScroll);
-    window.addEventListener('resize', loadOnResize);
-    console.log('added event listeners')
-    return function cleanupListeners() {
-      window.removeEventListener('scroll', loadOnScroll);
-      window.removeEventListener('resize', loadOnResize);
-      console.log('REMOVED event listeners')
-    }
-  });
+  // useEffect(() => {
+  //   window.addEventListener('scroll', loadOnScroll);
+  //   window.addEventListener('resize', loadOnResize);
+  //   console.log('added event listeners')
+  //   return function cleanupListeners() {
+  //     window.removeEventListener('scroll', loadOnScroll);
+  //     window.removeEventListener('resize', loadOnResize);
+  //     console.log('REMOVED event listeners')
+  //   }
+  // });
 
   // Load the image data
   const [images, setImages] = useState({imageData: [], loading: true});
@@ -27,8 +30,8 @@ const AllImages = (props) => {
   // React hook that runs after every render
   useEffect(() => {
     const fetchData = async () => {
-      const userId = props.user ? '/' + props.user.id : '';
-      const queryString = '/api/images' + userId;
+      const userIdString = userId ? ('/' + userId) : '';
+      const queryString = '/api/images' + userIdString;
       const { data } = await axios.get(queryString);
       setImages({ imageData: data, loading: false });
     }

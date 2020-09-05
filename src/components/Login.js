@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Login = (props) => {
-  const { logIn } = props;
+  const { logIn, title } = props;
+  const path = title === 'Log In' ? '/login' : '/signup';
 
   const [formData, setFormData] = useState({
     email: '',
@@ -30,9 +31,8 @@ const Login = (props) => {
         status: 0,
         message: ''
       });
-      const { data } = await axios.put('/auth/login', formData);
-      console.log('sent back:', data);
-      console.log('props: ',props);
+      const queryString = '/auth' + path;
+      const { data } = await axios.put(queryString, formData);
       // line below reloads app as a logged in user
       logIn(data);
     } catch (err) {
@@ -45,7 +45,7 @@ const Login = (props) => {
 
   return (
     <div>
-      <PageHeader title='Log In' />
+      <PageHeader title={title} />
       <div className='form-container'>
         <form onSubmit={handleSubmit}>
           <h6 className='error'>{error.message}</h6>
@@ -72,15 +72,25 @@ const Login = (props) => {
             </input>
           </div>
           <div>
-            <input type='submit' value='Log In'></input>
+            <input type='submit' value={title}></input>
           </div>
-          <h6>Don't have an account yet? Create one&nbsp;
-            <Link to='/signup'>here</Link>
-          </h6>
+          <LoginSubtext path={path} />
         </form>
       </div>
     </div>
   )
 }
+
+const LoginSubtext = (props) => {
+  return (props.path === '/login') ? (
+    <h6>Don't have an account yet? Create one&nbsp;
+    <Link to='/signup'>here</Link>
+    </h6>
+  ) : (
+    <h6>Already have an account? Log in&nbsp;
+    <Link to='/login'>here</Link>
+    </h6>
+  )
+};
 
 export default Login;

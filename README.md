@@ -50,3 +50,10 @@ process.env.PGDATABASE='imageuploader';
 process.env.PGPORT=5432;
 ```
 Note, the PGPASSWORD variable can be omitted if you do not have a password for your database.
+
+In the same `secrets.js` file, add a secret key that will act as the secret for your Express sessions. This should be a random key of characters of any length. You can read more about Express Session keys [here](https://expressjs.com/en/resources/middleware/session.html).
+
+```
+const sessionSecret = 'RANDOMKEYHERE';
+module.exports = sessionSecret;
+```

@@ -12,10 +12,10 @@ function UnauthenticatedApp(props) {
       <NavBar />
       <Switch>
         <Route path="/login">
-          <Login logIn={logIn} />
+          <Login logIn={logIn} title='Log In'/>
         </Route>
         <Route path="/signup">
-          {/* <Signup logIn={logIn} /> */}
+          <Login logIn={logIn} title='Sign Up'/>
         </Route>
         <Route path="/">
           <AllImages />

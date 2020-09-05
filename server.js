@@ -2,13 +2,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
+const session = require('express-session');
 const port = process.env.PORT || 5000;
 const api = require('./server/api.js');
-const auth = require('./server/auth.js')
+const auth = require('./server/auth.js');
+const sessionSecret = require('./secrets');
 
 // Body parsing middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Session middleware
+app.use(session({
+  secret: sessionSecret,
+  saveUninitialized: false,
+  resave: false
+}));
 
 // All API routes mounted on '/api'
 app.use("/api", api);
