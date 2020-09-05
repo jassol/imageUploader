@@ -6,7 +6,7 @@ const session = require('express-session');
 const port = process.env.PORT || 5000;
 const api = require('./server/api.js');
 const auth = require('./server/auth.js');
-const sessionSecret = require('./secrets');
+require('./secrets')
 
 // Body parsing middleware
 app.use(bodyParser.json());
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Session middleware
 app.use(session({
-  secret: sessionSecret,
+  secret: process.env.SESSIONSECRET,
   saveUninitialized: false,
   resave: false
 }));
