@@ -6,7 +6,8 @@ const session = require('express-session');
 const port = process.env.PORT || 5000;
 const api = require('./server/api.js');
 const auth = require('./server/auth.js');
-require('./secrets')
+
+if (process.env.NODE_ENV !== 'production') {require('./secrets')};
 
 // Body parsing middleware
 app.use(bodyParser.json());

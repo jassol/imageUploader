@@ -53,7 +53,8 @@ Note, the PGPASSWORD variable can be omitted if you do not have a password for y
 
 In the same `secrets.js` file, add a secret key that will act as the secret for your Express sessions. This should be a random key of characters of any length. You can read more about Express Session keys [here](https://expressjs.com/en/resources/middleware/session.html).
 
+Note: If you want to deploy this app, you will have to set an environmental variable of this same name in your deployed production environment. The secrets file is only used for local development only.
+
 ```
-const sessionSecret = 'RANDOMKEYHERE';
-module.exports = sessionSecret;
+process.env.SESSIONSECRET='RANDOMKEYHERE';
 ```
