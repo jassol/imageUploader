@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 // const AuthApp = React.lazy(() => import('./components/AuthenticatedApp'));
 // const UnauthApp = React.lazy(() => import('./components/UnauthenticatedApp'));
@@ -11,12 +12,16 @@ function App() {
 
   const [user, setUser] = useState(null);
 
+  let history = useHistory();
+
   const logIn = user => {
     setUser(user);
+    history.push(`/images/${user.id}`);
   };
 
   const logOut = () => {
-    setUser(null)
+    setUser(null);
+    history.push('/images')
   }
 
 
