@@ -3,7 +3,7 @@ import axios from 'axios';
 import SingleImage from './SingleImage';
 import Spinner from './Spinner';
 import PageHeader from './PageHeader'
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 // const loadOnScroll = () => {};
 // const loadOnResize = () => {};
@@ -11,6 +11,8 @@ import { useParams } from 'react-router-dom';
 const AllImages = (props) => {
 
   const { userId } = useParams();
+  // const loggedInUser = props.user;
+  // const loggedIn = useLocation() === '/myimages';
 
   // Set up listeners for scroll & resize events for lazy loading
   // useEffect(() => {

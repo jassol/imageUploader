@@ -17,6 +17,9 @@ function UnauthenticatedApp(props) {
         <Route path="/signup">
           <Login logIn={logIn} title='Sign Up'/>
         </Route>
+        <Route path="/images">
+          <AllImages />
+        </Route>
         <Route path="/">
           <AllImages />
         </Route>

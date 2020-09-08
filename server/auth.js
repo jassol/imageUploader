@@ -52,7 +52,7 @@ router.put("/login", async (req, res, next) => {
     else {
       const err = new Error();
       err.message = 'Incorrect Login Credentials';
-      res.status(401).send(err)
+      res.status(401).send(err);
     }
   } catch (error) {
     next(error);
@@ -62,14 +62,18 @@ router.put("/login", async (req, res, next) => {
 router.put("/signup", async (req, res, next) => {
   try {
     const { email, pswd } = req.body;
-    const { rows } = await db.query('INSERT INTO users (email, pswd) VALUES ($1, $2)', [email, pswd]);
-    if (rows) {
-      const { id, email } = rows[0];
+    const { rows } = await db.query('SELECT * FROM users WHERE email = $1', [email]);
+    if (rows.length) {
+      const err = new Error();
+      err.message = 'Email Already Exists. Log In Or Use New Email.';
+      res.status(401).send(err);
+    } else {
+      const { rows } = await db.query('INSERT INTO users (email, pswd) VALUES ($1, $2) RETURNING id', [email, pswd]);
+      const { id } = rows[0];
       req.session.userId = id;
       res.status(201).send({ id:id, email:email });
     }
   } catch (error) {
-    error.message = 'Email Already Exists.'
     next(error);
   }
 })

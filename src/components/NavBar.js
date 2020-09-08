@@ -9,7 +9,7 @@ const NavBar = (props) => {
         <h5>Welcome, {props.user.email}</h5>
       </div>
       <div id='navLinks'>
-        <Link to={`/images/${props.user.id}`}>My Images</Link>
+        <Link to={`/myimages`}>My Images</Link>
         <Link to='/images'>Browse Images</Link>
         <button id="logout" onClick={props.logOut}>Log Out</button>
       </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PageHeader from './PageHeader';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import DemoInfo from './DemoInfo';
 
 const Login = (props) => {
   const { logIn, title } = props;
@@ -83,14 +84,23 @@ const Login = (props) => {
 
 const LoginSubtext = (props) => {
   return (props.path === '/login') ? (
-    <h6>Don't have an account yet? Create one&nbsp;
-    <Link to='/signup'>here</Link>
-    </h6>
+    <div>
+      <h6>Don't have an account yet? Create one&nbsp;
+      <Link to='/signup'>here</Link>
+      </h6>
+      <DemoInfo />
+    </div>
   ) : (
-    <h6>Already have an account? Log in&nbsp;
-    <Link to='/login'>here</Link>
-    </h6>
+    <div>
+      <h6>Already have an account? Log in&nbsp;
+      <Link to='/login'>here</Link>
+      </h6>
+      <DemoInfo />
+    </div>
   )
 };
+
+
+
 
 export default Login;

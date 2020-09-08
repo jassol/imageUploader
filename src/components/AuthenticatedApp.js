@@ -11,11 +11,11 @@ function AuthenticatedApp(props) {
     <div>
       <NavBar user={user} logOut={logOut} />
       <Switch>
-        <Route path="/images/:userId">
+        <Route path="/myimages">
           <AllImages user={user} />
         </Route>
-        <Route path="/">
-          <AllImages/>
+        <Route path="/images">
+          <AllImages user={user} />
         </Route>
       </Switch>
     </div>
